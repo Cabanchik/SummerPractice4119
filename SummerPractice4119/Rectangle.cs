@@ -6,40 +6,49 @@ using System.Threading.Tasks;
 using System.Drawing;
 using System.Windows.Forms;
 using System.Xml.Serialization;
+using System.Threading;
 
 namespace SummerPractice4119 
 {
     internal class Rectangle 
     {
 
-        private Panel panel;
+        private Graphics panel;
         private int width;
         private Dot centre;
         private int height;
         private int num;
 
-        private Timer moveTimer;
+        private System.Windows.Forms.Timer moveTimer;
         public bool moving = false;
-
-        public Rectangle(int _x, int _y, Panel _panel)
+        public delegate void Runnin();
+        public event Runnin rectangleRun;
+        public delegate void Stoppin();
+        public event Stoppin rectangleStop;
+        Thread moveThread;
+        public void rectangleInvokeEvent()
+        {
+            rectangleRun.Invoke();
+        }
+        
+        public Rectangle(int _x, int _y, Graphics _panel)
         {
             centre = new Dot(_x, _y);
-            panel = _panel;
+            this.panel = _panel;
             width = 100;
             height = 50;
             num = 1;
 
-            moveTimer = new Timer();
+            moveTimer = new System.Windows.Forms.Timer();
             moveTimer.Interval = 20;
             
             Show();
 
         }
-        public bool RectangleMovingStop()
+        public void RectangleMovingStop()
         {
 
             moving = false;
-            return moving;
         }
         public void Move(int dx, int dy)
         {
@@ -56,25 +65,24 @@ namespace SummerPractice4119
                 else
                 {
                     RectangleMovingStop();
+                    
                 }
                 
 
             }
-
-
         }
         public void Clear()
 
         {
-            SolidBrush b = new SolidBrush(panel.BackColor);
-            panel.CreateGraphics().FillRectangle(b, centre.GetX(), centre.GetY(), width, height);
+            SolidBrush b = new SolidBrush(Color.Snow);
+            panel.FillRectangle(b, centre.GetX(), centre.GetY(), width, height);
 
         }
         public void Show()
 
         {
             SolidBrush b = new SolidBrush(Color.DarkOliveGreen);
-            panel.CreateGraphics().FillRectangle(b, centre.GetX(), centre.GetY(), width, height);
+            panel.FillRectangle(b, centre.GetX(), centre.GetY(), width, height);
 
         }
         public int getRectangleX()
@@ -90,9 +98,8 @@ namespace SummerPractice4119
         }
         public void MoveTimerEventX(Object myObject, EventArgs myEventArgs)
         {
-
-            Move(1, 1);
-
+            
+                Move(1, 1);
         }
 
 
