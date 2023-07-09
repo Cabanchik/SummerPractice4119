@@ -20,12 +20,15 @@ namespace SummerPractice4119
         private int num;
 
         private System.Windows.Forms.Timer moveTimer;
-        public bool moving = false;
+        private bool moving = false;
         public delegate void Runnin();
         public event Runnin rectangleRun;
         public delegate void Stoppin();
         public event Stoppin rectangleStop;
         Thread moveThread;
+
+        public bool Moving { get => moving; set => moving = value; }
+
         public void rectangleInvokeEvent()
         {
             rectangleRun.Invoke();
@@ -38,7 +41,6 @@ namespace SummerPractice4119
             width = 100;
             height = 50;
             num = 1;
-
             moveTimer = new System.Windows.Forms.Timer();
             moveTimer.Interval = 20;
             
@@ -48,7 +50,7 @@ namespace SummerPractice4119
         public void RectangleMovingStop()
         {
 
-            moving = false;
+            Moving = false;
         }
         public void Move(int dx, int dy)
         {

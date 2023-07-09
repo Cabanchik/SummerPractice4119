@@ -18,10 +18,12 @@ namespace SummerPractice4119
         private int speed;
         private List<Circle> circleList;
         private int num;
-        public bool moving = false;
+        private bool moving = false;
         public delegate void Runnin();
         public event Runnin circleRun;
         Thread moveThread;
+
+        public bool Moving { get => moving; set => moving = value; }
 
         public void circleInvokeEvent(Object myObject, EventArgs myEventArgs)
         {
@@ -59,7 +61,7 @@ namespace SummerPractice4119
                 Show();
                 if (centre.GetX() + rad == 776 || centre.GetY() + rad == 371 || centre.GetY() + rad == 0 || centre.GetX() + rad == 0)
                 {
-                    moving = false;
+                    Moving = false;
                 }
             
         }
@@ -90,7 +92,7 @@ namespace SummerPractice4119
 
         public void MoveTimerEventX(Object myObject, EventArgs myEventArgs)
         {
-            if (moving == true)
+            if (Moving == true)
             {
                 Move(1, 1);
             }
@@ -104,7 +106,7 @@ namespace SummerPractice4119
         public void MoveTimerEventY(Object myObject, EventArgs myEventArgs)
         {
 
-            if (moving == true)
+            if (Moving == true)
             {
                 Move(-1, -1);
             }
@@ -116,7 +118,7 @@ namespace SummerPractice4119
         }
         public void StopSignal()
         {
-            moving = false;
+            Moving = false;
         }
 
     }

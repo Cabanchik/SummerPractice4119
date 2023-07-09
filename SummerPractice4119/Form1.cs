@@ -38,7 +38,7 @@ namespace SummerPractice4119
             {
 
                 sas = new Rectangle(250, 70, g);
-                sas.moving = true;
+                sas.Moving = true;
                 started = true;
                 timer = new Timer();
                 timer.Interval = 20;
@@ -52,19 +52,19 @@ namespace SummerPractice4119
         public void recCheck(Object myObject, EventArgs myEventArgs)
         {
 
-            if (sas.moving == false)
+            if (sas.Moving == false)
             {
 
                 timer.Tick -= sas.MoveTimerEventX;
-                circle.moving = true;
-                circle1.moving = true;
-                circle2.moving = true;
-                circle3.moving = true;
+                circle.Moving = true;
+                circle1.Moving = true;
+                circle2.Moving = true;
+                circle3.Moving = true;
                 timer.Tick += circle.MoveTimerEventX;
                 timer.Tick += circle1.MoveTimerEventX;
                 timer.Tick += circle2.MoveTimerEventY;
                 timer.Tick += circle3.MoveTimerEventY;
-                //timer.Tick -= recCheck;
+                timer.Tick -= recCheck;
 
             }
 
