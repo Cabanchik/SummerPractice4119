@@ -24,14 +24,7 @@ namespace SummerPractice4119
         public delegate void Stoppin();
         public event Stoppin circleStop;
         Thread moveThread;
-
         public bool Moving { get => moving; set => moving = value; }
-
-        public void circleInvokeEvent(Object myObject, EventArgs myEventArgs)
-        {
-            circleRun.Invoke();
-        }
-
         public Circle(int _x, int _y, int _rad, Graphics g, int id)
         {
             centre = new Dot(_x, _y);
@@ -43,7 +36,7 @@ namespace SummerPractice4119
             Show();
 
         }
-
+        
         public int getCircleX()
 
         {
@@ -54,7 +47,10 @@ namespace SummerPractice4119
         {
             return centre.GetY();
         }
-
+        public void circleInvokeEvent(Object myObject, EventArgs myEventArgs)
+        {
+            circleRun.Invoke();
+        }
         public void Move(int dx, int dy)
         {
             while (moving)

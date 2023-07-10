@@ -17,7 +17,6 @@ namespace SummerPractice4119
         Circle circle1;
         Circle circle2;
         Rectangle sas;
-        Rectangle sas2;
         public static Timer timer;
         Circle circle3;
         bool started = false;
@@ -28,7 +27,6 @@ namespace SummerPractice4119
         public static event ListHandler sasun;
         public Form1()
         {
-
             InitializeComponent();
             g = panelMain.CreateGraphics();
         }

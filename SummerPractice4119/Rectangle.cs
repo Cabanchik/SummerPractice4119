@@ -12,13 +12,11 @@ namespace SummerPractice4119
 {
     internal class Rectangle 
     {
-
         private Graphics panel;
         private int width;
         private Dot centre;
         private int height;
         private int num;
-
         private System.Windows.Forms.Timer moveTimer;
         private bool moving = false;
         public delegate void Runnin();
@@ -43,14 +41,11 @@ namespace SummerPractice4119
             num = 1;
             moveTimer = new System.Windows.Forms.Timer();
             moveTimer.Interval = 20;
-            
             Show();
-
         }
 
         public void RectangleMovingStop()
         {
-            
             Moving = false;
         }
         public void Move(int dx, int dy)
@@ -59,43 +54,34 @@ namespace SummerPractice4119
             {
                 if (getRectangleX() <= 330 || getRectangleY() <= 170)
                 {
-                   
                     Clear();
                     centre.Move(dx, dy);
                     Show();
-                    
                 }
                 else
                 {
                     rectangleStop.Invoke();
-                    
                 }
                 
 
             }
         }
         public void Clear()
-
         {
             SolidBrush b = new SolidBrush(Color.White);
             panel.FillRectangle(b, centre.GetX(), centre.GetY(), width, height);
-
         }
         public void Show()
-
         {
             SolidBrush b = new SolidBrush(Color.Wheat);
             panel.FillRectangle(b, centre.GetX(), centre.GetY(), width, height);
-
         }
         public int getRectangleX()
-
         {
             return centre.GetX();
         }
 
         public int getRectangleY()
-
         {
             return centre.GetY();
         }
