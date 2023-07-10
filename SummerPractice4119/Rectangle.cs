@@ -47,9 +47,10 @@ namespace SummerPractice4119
             Show();
 
         }
+
         public void RectangleMovingStop()
         {
-
+            
             Moving = false;
         }
         public void Move(int dx, int dy)
@@ -66,7 +67,7 @@ namespace SummerPractice4119
                 }
                 else
                 {
-                    RectangleMovingStop();
+                    rectangleStop.Invoke();
                     
                 }
                 
@@ -76,14 +77,14 @@ namespace SummerPractice4119
         public void Clear()
 
         {
-            SolidBrush b = new SolidBrush(Color.Snow);
+            SolidBrush b = new SolidBrush(Color.White);
             panel.FillRectangle(b, centre.GetX(), centre.GetY(), width, height);
 
         }
         public void Show()
 
         {
-            SolidBrush b = new SolidBrush(Color.DarkOliveGreen);
+            SolidBrush b = new SolidBrush(Color.Wheat);
             panel.FillRectangle(b, centre.GetX(), centre.GetY(), width, height);
 
         }

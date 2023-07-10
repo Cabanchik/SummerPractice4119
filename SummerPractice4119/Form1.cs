@@ -25,6 +25,7 @@ namespace SummerPractice4119
         public delegate void ListHandler();
         public delegate void Stoppin();
         public static event Stoppin rectStop;
+        public static event ListHandler sasun;
         public Form1()
         {
 
@@ -42,43 +43,30 @@ namespace SummerPractice4119
                 started = true;
                 timer = new Timer();
                 timer.Interval = 20;
-                timer.Tick += sas.MoveTimerEventX;                           
+                sas.rectangleStop += circleRun;
+                timer.Tick += sas.MoveTimerEventX;
                 timer.Start();
                 sas.rectangleStop += sas.RectangleMovingStop;
-                timer.Tick += recCheck;
-            
+
             }
         }
-        public void recCheck(Object myObject, EventArgs myEventArgs)
+        public void circleRun()
         {
-
-            if (sas.Moving == false)
-            {
-
-                timer.Tick -= sas.MoveTimerEventX;
-                circle.Moving = true;
-                circle1.Moving = true;
-                circle2.Moving = true;
-                circle3.Moving = true;
-                timer.Tick += circle.MoveTimerEventX;
-                timer.Tick += circle1.MoveTimerEventX;
-                timer.Tick += circle2.MoveTimerEventY;
-                timer.Tick += circle3.MoveTimerEventY;
-                timer.Tick -= recCheck;
-
-            }
-
+            timer.Tick -= sas.MoveTimerEventX;
+            timer.Stop();
+            circle.StartOrder();
+            circle1.StartOrder();
+            circle2.StartOrder();
+            circle3.StartOrder();
         }
         
 
-
-
         private void panelMain_Click(object sender, EventArgs e)
         {
-            circle = new Circle(600, 100, 20, g);
-            circle1 = new Circle(500, 250, 20, g);
-            circle2 = new Circle(200, 50, 20, g);
-            circle3 = new Circle(20, 250, 20, g);
+            circle = new Circle(600, 100, 20, panelMain.CreateGraphics(),1);
+            circle1 = new Circle(500, 250, 20, panelMain.CreateGraphics(),1);
+            circle2 = new Circle(200, 50, 20, panelMain.CreateGraphics(),-1);
+            circle3 = new Circle(20, 250, 20, panelMain.CreateGraphics(),-1);
         }
     }
 }
